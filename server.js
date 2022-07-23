@@ -19,6 +19,7 @@ var rollbar = new Rollbar({
 rollbar.log('Hello world!')
 
 app.get('/', (req, res) => {
+    rollbar.info("Someone loaded your html")
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
@@ -43,6 +44,7 @@ app.get('/api/robots', (req, res) => {
 
 app.get('/api/robots/five', (req, res) => {
     try {
+        rollbar.info("Robots succesfully loaded")
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
         let compDuo = shuffled.slice(6, 8)
@@ -55,6 +57,7 @@ app.get('/api/robots/five', (req, res) => {
 
 app.post('/api/duel', (req, res) => {
     try {
+        rollbar.info("Duel initiated")
         // getting the duos from the front end
         let {compDuo, playerDuo} = req.body
 
@@ -86,6 +89,7 @@ app.post('/api/duel', (req, res) => {
 
 app.get('/api/player', (req, res) => {
     try {
+        rollbar.info("Player record updated")
         res.status(200).send(playerRecord)
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
