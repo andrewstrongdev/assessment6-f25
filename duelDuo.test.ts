@@ -29,3 +29,15 @@ test('Draw button displays bots to choose', async() => {
 
     expect(displayed).toEqual(true)
 })
+
+test('clicking an “Add to Duo” button displays the div with id = “player-duo”', async () => {
+    await driver.findElement(By.className('bot-btn')).click()
+    await driver.sleep(3000)
+
+    const duo = await driver.findElement(By.id('player-duo'))
+
+    const displayduo = await duo.isDisplayed()
+
+    expect(displayduo).toEqual(true)
+
+})
